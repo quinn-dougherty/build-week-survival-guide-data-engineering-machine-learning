@@ -17,18 +17,18 @@ that you don't necessarily need to know a lot about what the front-end
 engineer(s) are doing. 
 
 ## [do's and don'ts](#dodont)
-_dont_: dive into data cleaning and predictive modeling
-_do_: coordinate with the ML engineer(s), and help them out if they need you and
+- _dont_: dive into data cleaning and predictive modeling
+- _do_: coordinate with the ML engineer(s), and help them out if they need you and
 if you have time. 
 
-_don't_: wait until every thing fall into place before spinning up your app
-_do_: figure out as much as you can about what the needed scaffolding will be,
+- _don't_: wait until every thing fall into place before spinning up your app
+- _do_: figure out as much as you can about what the needed scaffolding will be,
 and work with dummy IO and beef up your test scripts while you wait for people
 to get back to you. 
 
-_probably don't_: attempt to spin up one app where everything happens at once,
+- _probably don't_: attempt to spin up one app where everything happens at once,
 sparking a debate between whether to use javascript or python
-_do_: assume that two apps will be made-- one with a javascript stack, and an API
+- _do_: assume that two apps will be made-- one with a javascript stack, and an API
 with a python stack
 
 ## [the app](#theapp)
