@@ -1,8 +1,8 @@
 # build week survival guide: data engineering
 
 1. [overview](#overview)
-2. [do's and don'ts](#do-dont)
-3. [the app](#the-app)
+2. [do's and don'ts](#dodont)
+3. [the app](#theapp)
 4. [test scripting](#testing)
 
 ## [overview](#overview)
@@ -16,7 +16,7 @@ _need to know_ a lot about what the machine-learning engineer(s) are doing, and
 that you don't necessarily need to know a lot about what the front-end
 engineer(s) are doing. 
 
-## [do's and don'ts](#do-dont)
+## [do's and don'ts](#dodont)
 _dont_: dive into data cleaning and predictive modeling
 _do_: coordinate with the ML engineer(s), and help them out if they need you and
 if you have time. 
@@ -31,7 +31,7 @@ sparking a debate between whether to use javascript or python
 _do_: assume that two apps will be made-- one with a javascript stack, and an API
 with a python stack
 
-## [the app](#the-app)
+## [the app](#theapp)
 you can write and host however you want, but flask and heroku is basically
 standard/most common in BW.
 
@@ -41,41 +41,41 @@ from flask import request
 import pickle 
 ​
 @app.route("/swords", methods=['POST'])
-def address():
-    ''' '''
- 
-	# receive input
+def swords():
+    ''' a route, expects json object with 2 keys'''
+    
+    # receive input
     lines = request.get_json(force=True)
-	
-	# get data from json
-	blessed_blade = lines['thunderfury'] # json keys that backend abides
+    
+    # get data from json
+    blessed_blade = lines['thunderfury'] # json keys that backend abides
 ​    ashbringer = lines['corrupted'] 
 
-	# validate input (optional)
-	assert isinstance(blessed_blade, int)
-	assert isinstance(ashbringer, str)
-	
+    # validate input (optional)
+    assert isinstance(blessed_blade, int)
+    assert isinstance(ashbringer, str)
+    
     # deserialize the pretrained model. 
-	with open('model.pickle', 'rb') as mod: 
-		model = pickle.load(mod)
-	
-	# predict
-	output = model.predict([[blessed_blade, ashbringer]])
-	
-	# use a dictionary to format output for json
-	send_back = {'prediction': output}
-	send_back_dummy = {'dummy': 1} # minimal functionality for testing
+    with open('model.pickle', 'rb') as mod: 
+        model = pickle.load(mod)
+    
+    # predict
+    output = model.predict([[blessed_blade, ashbringer]])
+    
+    # use a dictionary to format output for json
+    send_back = {'prediction': output}
+    send_back_dummy = {'dummy': 1} # minimal functionality for testing
     send_back_input = { # verify that input is working as expected
         'blessed_blade': blessed_blade, 
         'ashbringer': ashbringer
         }
     
-	# give output to sender.
-	return app.response_class(
-            response=json.dumps(send_back),
-            status=200,
-            mimetype='application/json'
-        )
+    # give output to sender.
+    return app.response_class(
+        response=json.dumps(send_back),
+        status=200,
+        mimetype='application/json'
+    )
 ```
 You'll want to **comment out anything to do with the model** at first, because
 **you'll be writing this app while you wait for the ML engineer(s) to figure out
